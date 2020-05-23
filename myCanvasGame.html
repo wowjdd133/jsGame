@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TrunJaeGame</title>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+
+    <style>
+      .mainArea{
+        position : relative;
+        height: 600px;
+        width: 800px;
+        border: 2px solid #888888;
+        background-color: #FEFEFE;
+        font-family: 'Slabo 27px', serif;
+        left:100px;
+      }
+      .playerBehaviorArea{
+        position : absolute;
+        height: 200px;
+        width: 800px;
+        left: 0px;
+        bottom: 0px;
+        border-top: 2px solid #888888;
+      }
+      .monsterArea{
+        position : absolute;
+        height: 200px;
+        width: 150px;
+        left: 530px;
+        border: 0px;
+      }
+
+      .playerArea{
+        position : absolute;
+        left: 155px;
+        top: 165px;
+      }
+
+      .buttonArea{
+        position : absolute;
+      }
+      .levelArea{
+        text-align : center;
+        font-size : 18;
+      }
+      .hpArea{
+        text-align : center;
+        font-size : 25px;
+      }
+      .skillArea{
+          display : none;
+          position : absolute;
+          left:150px;
+          height: 200px;
+          width: 500px;
+          background-color: #F0F0F0;
+          text-align: center;
+      }
+      .backpackArea{
+        display : none;
+        position : absolute;
+        left:150px;
+        height: 200px;
+        width: 500px;
+        background-color: #f0f0f0;
+        text-align: center;
+      }
+      input {
+        position : absolute;
+        width: 200px;
+        height: 100px;
+        background-color: rgba( 0, 0, 0, 0.2 );
+        border-radius: 12px;
+        font-size: 30px;
+      }
+      ul{
+        list-style : none;
+      }
+      #attackButton{
+        left : 175px;
+      }
+      #defenseButton{
+        left : 425px;
+      }
+      #skillButton{
+        top : 100px;
+        left: 175px;
+      }
+      #backpackButton{
+        left : 425px;
+        top: 100px;
+      }
+      #monsterLevel{
+        position : absolute;
+        width: 200px;
+        height: 30px;
+        left: 500px;
+        top: 210px;
+      }
+      #playerLevel{
+        position : absolute;
+        width: 200px;
+        height: 30px;
+        left: 140px;
+        top: 100px;
+      }
+      #playerHp{
+        position : absolute;
+        width: 50px;
+        height: 30px;
+        left: 50px;
+        bottom: 95px;
+
+      }
+      #monsterHp{
+        position : absolute;
+        width: 50px;
+        height: 30px;
+        bottom: 85px;
+        right: 70px;
+      }
+      #playerXp{
+        position : absolute;
+        width: 150px;
+        height: 30px;
+        left: 17px;
+        bottom: 65px;
+      }
+      #backButton{
+        display : block;
+        position : absolute;
+        width: 70px;
+        height: 50px;
+        right: 10px;
+        bottom: 10px;
+        background-color: #888888;
+      }
+      #battleArea{
+        position : absolute;
+        background-color : #f0f0f0;
+        height: 300px;
+        width: 600px;
+        left:100px;
+      }
+
+      #battleArea2{
+        position : absolute;
+        background: transparent;
+        left:100px;
+        hegiht: 300px;
+        width: 600px;
+        z-index:2;
+      }
+      #battleArea3{
+        position : absolute;
+        background: transparent;
+        left:100px;
+        hegiht: 300px;
+        width: 600px;
+        z-index:2;
+        opacity: 0.5;
+      }
+      #battleArea4{
+        position : absolute;
+        background: transparent;
+        left:100px;
+        hegiht: 300px;
+        width: 600px;
+        z-index:2;
+      }
+      #youDie{
+        position : fixed;
+        left : 110px;
+        height : 500px;
+        width : 800px;
+        top : 50px;
+        display : none;
+      }
+      #newLoadButton{
+        position : absolute;
+        display:none;
+        font-size: 25px;
+        width: 140px;
+        height: 80px;
+        background-color: #333333;
+        color: #f0f0f0;
+        left: 330px;
+        top: 400px;
+        z-index: 4;
+      }
+      #dialogArea{
+        position : absolute;
+        opacity: 0.8;
+        height : 100px;
+        width : 600px;
+        background-color: #f0f0f0;
+        bottom: 200px;
+        left: 100px;
+        border: 1px solid #000000;
+        font-size: 15px;
+      }
+      #dialog{
+        padding :3px;
+        margin : 5px;
+      }
+      #audioArea{
+        position : fixed;
+        left: 600px;
+        top: 620px;
+      }
+      #skillEnergyArea{
+        background-color:#000000;
+        position: fixed;
+        width: 60px;
+        height: 80px;
+        left: 130px;
+        top: 190px;
+        color: #FFFFFF;
+        font-size: 50px;
+        text-align : center;
+      }
+    	#comment_area
+    	{
+        position: fixed;
+    		border: 1px solid #CCC;
+    		width: 600px;
+    		background-color: #eee;
+        right: 50px;
+        top: 10px;
+    	}
+    	#comment_area div
+    	{
+    		margin: 10px;
+    	}
+    	#comment_area input[type='text']
+    	{
+    		height: 30px;
+    	}
+    	#comment_area ul
+    	{
+    		list-style-type: none;
+    		margin: 0 0 0 10px;
+    		padding: 0;
+    	}
+    	#comment_area li .name
+    	{
+    		width: 100px;
+    		display: inline-block;
+    	}
+    	#comment_area li .comment
+    	{
+    		width: 400px;
+    		display: inline-block;
+    	}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+    	const COMMENT_KEY = "RyuJae";
+
+    	$(document).ready(function() {
+
+    		readCommentList(function(list) {
+    			$("#comment_list").empty();
+    			showCommentList(list);
+    		});
+
+    		$("#btn_save").on("click", function() {
+    			save();
+    		});
+
+    	});
+
+    	function save()
+    	{
+    		var name = $("[name='name']").val();
+    		var comment = $("[name='comment']").val();
+
+
+    		if (name == "")
+    		{
+    			alert("이름을 입력하세요.");
+    			$("[name='name']").focus();
+    		}
+    		else if (comment == "")
+    		{
+    			alert("내용을 입력하세요.");
+    			$("[name='comment']").focus();
+    		}
+    		else
+    		{
+    			$.ajax({
+    				url: "http://dev.gostaygolf.com/restApiLab/saveComment",
+    				method: "POST",
+    				data: {key: COMMENT_KEY, name: name, comment: comment},
+    				success: function(response)
+    				{
+    					$("[name='name']").val("");
+    					$("[name='comment']").val("");
+
+    					appendComment(response);
+    				}
+    			});
+    		}
+    	}
+
+
+    	function readCommentList(callback)
+    	{
+
+    		$.ajax({
+    			url: "http://dev.gostaygolf.com/restApiLab/readCommentList",
+    			method: "POST",
+    			data: {key: COMMENT_KEY},
+    			success: function(response)
+    			{
+    				if (callback)
+    				{
+    					callback(response);
+    				}
+    			},
+    		});
+    	}
+
+    	function showCommentList(list)
+    	{
+    		for (var i in list)
+    		{
+    			appendComment(list[i]);
+    		}
+    	}
+
+    	function appendComment(comment)
+    	{
+    		var li = $("<li></li>");
+
+    		li.append("<div class='name'>" + comment.name + "</div>");
+    		li.append("<div class='comment'>" + comment.comment + "</div>");
+
+    		$("#comment_list").prepend(li);
+    	}
+
+
+
+    </script>
+  </head>
+
+  <body onload="showAllLayer()" onkeydown = 'usePlayerSkill()'>
+    <script src="myCanvasGame.js"></script>
+    <audio id= "playAudio" src="music/칼효과음.mp3"></audio>
+    <audio id= "defenseAudio" src="music/방패 효과음.wav"></audio>
+    <audio id= "explosionAudio" src="music/폭발.wav"></audio>
+    <div class="mainArea">
+      <div id="skillEnergyArea">0</div>
+      <canvas id="battleArea">This browser doesn't supprot canvas</canvas>
+      <canvas id="battleArea2"></canvas>
+      <canvas id="battleArea3"></canvas>
+      <canvas id="battleArea4"></canvas>
+      <image class="monsterArea" src="monsters/monster0.PNG" id="monsterArea" name="monster">
+      <image class="playerArea" src="players/jiu.PNG">
+      <audio id="audioArea" controls="controls" autoplay="autoplay" loop="loop" preload="preload">
+        <source src= "music/bgm1.mp3" type="audio/mp3">
+      </audio>
+        <div class="levelArea">
+          <div id="monsterLevel"></div>
+          <div id="playerLevel"></div>
+        </div>
+      <div id="dialogArea">
+        <ul id="dialog">
+          <li id="msg_0">5레벨마다 보스가 나옵니다.</li>
+          <li id="msg_1">몬스터가 공격할 것 같으면 방어를 사용하세요!</li>
+          <li id="msg_2">방어를 사용하면 1/2의 데미지만 입습니다!</li>
+          <li id="msg_3">스킬은 해당 숫자를 누르면 사용가능합니다.</li>
+          <li id="msg_4">스킬 에너지는 방어를 성공할시에 쌓입니다!</li>
+        </ul>
+      </div>
+      <div class="playerBehaviorArea">
+        <div class="hpArea">
+          <div id="playerHp"></div>
+          <div id="monsterHp"></div>
+          <div id="playerXp"></div>
+        </div>
+          <div class="buttonArea">
+            <input type='button' id='attackButton' value='공격하기' onclick="attackMonster()">
+            <input type='button' id='defenseButton' value='방어하기' onclick="defenseAttack()">
+            <input type='button' id='skillButton' value='스킬쓰기' onclick="openSkillArea()">
+            <input type='button' id='backpackButton' value='배낭' onclick="openBackpackArea()">
+          </div>
+          <div class="skillArea" id="skillBook"></div>
+          <div class="backpackArea" id="backpackArea"></div>
+          <button id="backButton" onclick="closeArea()">닫기</button>
+        </div>
+        <image id="youDie" src="youDie/youDie.jpg">
+        <button id="newLoadButton" onclick="newLoad()">재시작</button>
+      </div>
+      <div id="comment_area" >
+    	<div id="comment_input_area">
+    		<div>
+    			<label>이름 <input type="text" name="name" style="width: 300px;" autocomplete="off" value=""></label>
+    		</div>
+    		<div>
+    			<label style="vertical-align: top;">내용 <input type="text" name="comment" style="width: 500px;" value=""></label>
+    		</div>
+    		<div>
+    			<input type="button" value="저장" style="position: relative; left: 250px;" id="btn_save">
+    		</div>
+
+    	</div>
+    	<div id="comment_list_area">
+    		<ul id="comment_list">
+    		</ul>
+    	</div>
+
+    </div>
+  </body>
+
+  </html>
